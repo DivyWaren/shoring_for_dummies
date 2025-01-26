@@ -4,6 +4,8 @@ import '../settings/settings_view.dart';
 import 'sample_item.dart';
 import 'sample_item_details_view.dart';
 
+import '../data/data.dart';
+
 /// Displays a list of SampleItems.
 class SampleItemListView extends StatelessWidget {
   const SampleItemListView({
@@ -33,36 +35,102 @@ class SampleItemListView extends StatelessWidget {
         ],
       ),
 
-      // To work with lists that may contain a large number of items, it’s best
-      // to use the ListView.builder constructor.
-      //
-      // In contrast to the default ListView constructor, which requires
-      // building all Widgets up front, the ListView.builder constructor lazily
-      // builds Widgets as they’re scrolled into view.
-      body: ListView.builder(
-        // Providing a restorationId allows the ListView to restore the
-        // scroll position when a user leaves and returns to the app after it
-        // has been killed while running in the background.
-        restorationId: 'sampleItemListView',
+      // The SingleChildScrolLView makes its child scrollable when
+      // the content is too large to fit in the available screen space.
+      body: SingleChildScrollView(
+        // The Column is a layout widget that arranges its children vertically.
+        child: Column(
+          // This aligns all children in a column from left to right.
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            // Section for items categorized as shoring types
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Shoring Types',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+            _buildGrid(shoringTypes),
+
+            // Section for items categorized as wood cuts
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Wood Cuts',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+            _buildGrid(woodCuts),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Builds a grid of items based on the provided data.
+  Widget _buildGrid(List<Map<String, String>> items) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: GridView.builder(
+
+        // This ensures that the grid view takes only as much space as
+        // its children need, rather than taking up all available space.
+        shrinkWrap: true,
+
+        // Disables scrolling within the grid itself. This is usually used
+        // when the grid is inside a scrollable container when you don't want
+        // the grid to scroll independently.
+        physics: const NeverScrollableScrollPhysics(),
+
+        // Defines the grid layout
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // Two items per row
+          mainAxisSpacing: 16, // Space between rows i.e. vertical spacing
+          crossAxisSpacing: 16, // Space between columns i.e. horizontal spacing
+          childAspectRatio: 1 / 1, // Adjust this to control the card's size
+        ),
+
         itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
+
+        // This function is called for each item and can be used to get the current item.
+        itemBuilder: (context, index) {
           final item = items[index];
 
-          return ListTile(
-            title: Text('SampleItem ${item.id}'),
-            leading: const CircleAvatar(
-              // Display the Flutter Logo image asset.
-              foregroundImage: AssetImage('assets/images/flutter_logo.png'),
-            ),
+          // Wraps the grid item to detect taps which triggers the onTap function.
+          return GestureDetector(
             onTap: () {
-              // Navigate to the details page. If the user leaves and returns to
-              // the app after it has been killed while running in the
-              // background, the navigation stack is restored.
+              // Navigate to the details page
               Navigator.restorablePushNamed(
                 context,
                 SampleItemDetailsView.routeName,
+                arguments: item, // Pass the item as an argument if needed
               );
-            }
+            },
+            child: Column(
+              children: [
+                Expanded(
+                  child: AspectRatio(
+                    aspectRatio: 1, // Make the image square
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0), // Clips the image to have rounded corners with a radius of 8px
+                      child: Image.asset(
+                        item['image']!,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  item['title']!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
           );
         },
       ),
