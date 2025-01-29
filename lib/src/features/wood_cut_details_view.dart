@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 /// Displays detailed information about a SampleItem.
-class SampleItemDetailsView extends StatefulWidget {
-  const SampleItemDetailsView({super.key});
+class WoodCutDetailsView extends StatefulWidget {
+  const WoodCutDetailsView({super.key});
 
   static const routeName = '/sample_item';
 
   // Creates a mutable state for the widget
   @override
-  State<SampleItemDetailsView> createState() => _SampleItemDetailsViewState();
+  State<WoodCutDetailsView> createState() => _WoodCutDetailsView();
 }
 
 // The state class for the SampleItemDetailsView widget
-class _SampleItemDetailsViewState extends State<SampleItemDetailsView> {
+class _WoodCutDetailsView extends State<WoodCutDetailsView> {
   // To keep track of the selected button (0: Description, 1: Usage)
   int selectedIndex = 0;
 

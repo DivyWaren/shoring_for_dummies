@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
-import 'sample_item_details_view.dart';
+import 'wood_cut_details_view.dart';
 
 import '../data/data.dart';
 
@@ -105,7 +105,7 @@ class SampleItemListView extends StatelessWidget {
               // Navigate to the details page
               Navigator.restorablePushNamed(
                 context,
-                SampleItemDetailsView.routeName,
+                WoodCutDetailsView.routeName,
                 arguments: item, // Pass the item as an argument if needed
               );
             },
