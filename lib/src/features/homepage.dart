@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../settings/settings_view.dart';
-import 'sample_item.dart';
 import 'wood_cut_details_view.dart';
 
 import '../data/data.dart';
@@ -9,13 +8,10 @@ import '../data/data.dart';
 /// Displays a list of SampleItems.
 class SampleItemListView extends StatelessWidget {
   const SampleItemListView({
-    super.key,
-    this.items = const [SampleItem(1), SampleItem(2), SampleItem(3)],
+    super.key
   });
 
   static const routeName = '/';
-
-  final List<SampleItem> items;
 
   @override
   Widget build(BuildContext context) {
@@ -102,12 +98,23 @@ class SampleItemListView extends StatelessWidget {
           // Wraps the grid item to detect taps which triggers the onTap function.
           return GestureDetector(
             onTap: () {
-              // Navigate to the details page
-              Navigator.restorablePushNamed(
-                context,
-                WoodCutDetailsView.routeName,
-                arguments: item, // Pass the item as an argument if needed
-              );
+              // Checks if the tapped item is a wood cut
+              if (woodCuts.contains(item)) {
+                // Navigate to the details page for wood cuts
+                Navigator.restorablePushNamed(
+                  context,
+                  WoodCutDetailsView.routeName,
+                  arguments: item, // Pass the item as an argument
+                );
+              } else {
+                // Show a notification if tapped item is a shoring type
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('${item['title']} is a Shoring Type.'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
             },
             child: Column(
               children: [
