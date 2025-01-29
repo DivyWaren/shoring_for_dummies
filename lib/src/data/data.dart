@@ -29,9 +29,9 @@ const shoringTypes = [
       '''
   },
   {
-    'title': 'T-Shore', 
+    'title': 'Vertical Shore', 
     'image': 'assets/images/t_shore.jpg',
-    'description': 'it is a t-shore',
+    'description': 'it is a vertical shore',
     'usage': 'Step 1:'
   },
 ];

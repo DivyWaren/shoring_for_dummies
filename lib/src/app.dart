@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'features/vertical_shore.dart';
 import 'features/window_shore.dart';
 import 'features/wood_cut_details_view.dart';
 import 'features/homepage.dart';
@@ -73,6 +74,8 @@ class MyApp extends StatelessWidget {
                     return const WoodCutDetailsView();
                   case WindowShorePage.routeName:
                     return const WindowShorePage();
+                  case VerticalShorePage.routeName:
+                    return const VerticalShorePage();
                   default:
                     return const SampleItemListView();
                 }

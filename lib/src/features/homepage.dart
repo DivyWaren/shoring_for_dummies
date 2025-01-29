@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../settings/settings_view.dart';
+import 'vertical_shore.dart';
 import 'wood_cut_details_view.dart';
 import 'window_shore.dart';
 import '../data/data.dart';
@@ -98,6 +99,7 @@ class SampleItemListView extends StatelessWidget {
           // Wraps the grid item to detect taps which triggers the onTap function.
           return GestureDetector(
             onTap: () {
+
               // Checks if the tapped item is a wood cut
               if (woodCuts.contains(item)) {
                 // Navigate to the details page for wood cuts
@@ -107,6 +109,7 @@ class SampleItemListView extends StatelessWidget {
                   arguments: item, // Pass the item as an argument
                 );
               } 
+
               // Checks if the tapped item is Window Shore
               else if (item['title'] == 'Window Shore') {
                 Navigator.restorablePushNamed(
@@ -115,6 +118,16 @@ class SampleItemListView extends StatelessWidget {
                   arguments: item, // Pass the item as an argument
                 );
               }
+
+              // Checks if the tapped item is Vertical Shore
+              else if (item['title'] == 'Vertical Shore') {
+                Navigator.restorablePushNamed(
+                  context,
+                  VerticalShorePage.routeName,
+                  arguments: item, // Pass the item as an argument
+                );
+              }
+
               else {
                 // Show a notification if tapped item is a shoring type
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -124,6 +137,7 @@ class SampleItemListView extends StatelessWidget {
                   ),
                 );
               }
+
             },
             child: Column(
               children: [

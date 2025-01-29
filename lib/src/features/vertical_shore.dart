@@ -1,41 +1,29 @@
 import 'package:flutter/material.dart';
 
-class WindowShorePage extends StatefulWidget {
-  const WindowShorePage({super.key});
-  static const routeName = '/windowshore';
+class VerticalShorePage extends StatefulWidget {
+  const VerticalShorePage({super.key});
+  static const routeName = '/verticalshore';
 
   @override
-  State<WindowShorePage> createState() => _WindowShorePageState();
+  State<VerticalShorePage> createState() => _VerticalShorePageState();
 }
 
-class _WindowShorePageState extends State<WindowShorePage> {
-  final TextEditingController leftController = TextEditingController();
-  final TextEditingController rightController = TextEditingController();
+class _VerticalShorePageState extends State<VerticalShorePage> {
+  final TextEditingController totalHeightController = TextEditingController();
   final TextEditingController headerController = TextEditingController();
   final TextEditingController soleplateController = TextEditingController();
-  final TextEditingController headerHeightController = TextEditingController();
-  final TextEditingController soleplateThicknessController = TextEditingController();
-  final TextEditingController wedgesController = TextEditingController();
+  final TextEditingController wedgeController = TextEditingController();
 
-  String headerMeasurement = "**cm";
-  String soleplateMeasurement = "**cm";
-  String leftVerticalMeasurement = "**cm";
-  String rightVerticalMeasurement = "**cm";
+  String verticalPostMeasurement = "** cm";
 
   void calculateMeasurements() {
     setState(() {
+      double totalHeightValue = double.tryParse(totalHeightController.text) ?? 0;
       double headerValue = double.tryParse(headerController.text) ?? 0;
       double soleplateValue = double.tryParse(soleplateController.text) ?? 0;
-      double leftValue = double.tryParse(leftController.text) ?? 0;
-      double rightValue = double.tryParse(rightController.text) ?? 0;
-      double wedgesValue = double.tryParse(wedgesController.text) ?? 0;
-      double soleplateThicknessValue = double.tryParse(soleplateThicknessController.text) ?? 0;
-      double headerHeightValue = double.tryParse(headerHeightController.text) ?? 0;
+      double wedgeValue = double.tryParse(wedgeController.text) ?? 0;
 
-      headerMeasurement = "${headerValue - wedgesValue} cm";
-      soleplateMeasurement = "${soleplateValue - wedgesValue} cm";
-      leftVerticalMeasurement = "${leftValue - wedgesValue - soleplateThicknessValue - headerHeightValue} cm";
-      rightVerticalMeasurement = "${rightValue - wedgesValue - soleplateThicknessValue - headerHeightValue} cm";
+      verticalPostMeasurement = "${totalHeightValue - headerValue - wedgeValue - soleplateValue} cm";
     });
   }
 
@@ -43,7 +31,7 @@ class _WindowShorePageState extends State<WindowShorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Window Shore"),
+        title: const Text("Vertical Shore"),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -56,7 +44,7 @@ class _WindowShorePageState extends State<WindowShorePage> {
           children: [
             Center(
               child: Image.asset(
-                'assets/images/window.jpg',
+                'assets/images/vertical_shore.png',
                 height: MediaQuery.of(context).size.height * 0.4, // 40% of screen height
                 width: double.infinity,
                 fit: BoxFit.contain, // Scales while keeping aspect ratio
@@ -65,13 +53,10 @@ class _WindowShorePageState extends State<WindowShorePage> {
             const SizedBox(height: 16),
             const Text("Enter Measurements (cm)", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
-            _buildTextField("Left[h]", leftController),
-            _buildTextField("Right[h]", rightController),
-            _buildTextField("Header[l]", headerController),
-            _buildTextField("Soleplate[l]", soleplateController),
-            _buildTextField("Header[hh]", headerHeightController),
-            _buildTextField("Soleplate[hs]", soleplateThicknessController),
-            _buildTextField("Wedges[w]", wedgesController),
+            _buildTextField("Total Height (h)", totalHeightController),
+            _buildTextField("Header Length (hh)", headerController),
+            _buildTextField("Soleplate Length (hs)", soleplateController),
+            _buildTextField("Wedges (w)", wedgeController),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: calculateMeasurements,
@@ -79,22 +64,17 @@ class _WindowShorePageState extends State<WindowShorePage> {
             ),
             const SizedBox(height: 16),
             const Text("Final Measurements", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            _buildMeasurementRow("Header", headerMeasurement),
-            _buildMeasurementRow("Soleplate", soleplateMeasurement),
-            _buildMeasurementRow("Left Vertical", leftVerticalMeasurement),
-            _buildMeasurementRow("Right Vertical", rightVerticalMeasurement),
+            _buildMeasurementRow("Vertical Post", verticalPostMeasurement),
             const SizedBox(height: 16),
             const Text("Requirements", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const Text("(4 x 4)") ,
-            const Text("- Header\n- Soleplate\n- Left Vertical\n- Right Vertical"),
+            const Text("- Header\n- Soleplate\n-VerticalPost"),
             const Text("(4 x 2)") ,
-            const Text("- Cleat (30cm) x 3\n- Wedge Set x 4"),
+            const Text("-Wedge Set x 1"),
             const Text("(30 x 15 cm)") ,
-            const Text("- Half Gusset x 1"),
+            const Text("- Half Gusset x 4"), 
             const SizedBox(height: 16),
             const Text("Assembly Guide", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            _buildAssemblyStep("Step 1: Set up the base framework using the 4\" by 4\" cleats", 'assets/images/assembly_step_1.jpg'),
-            _buildAssemblyStep("Step 2: Align the horizontal supports and secure with brackets.", 'assets/images/assembly_step_2.jpg'),
           ],
         ),
       ),
