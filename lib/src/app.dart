@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'features/window_shore.dart';
 import 'features/wood_cut_details_view.dart';
 import 'features/homepage.dart';
 import 'settings/settings_controller.dart';
@@ -71,7 +71,8 @@ class MyApp extends StatelessWidget {
                     return SettingsView(controller: settingsController);
                   case WoodCutDetailsView.routeName:
                     return const WoodCutDetailsView();
-                  case SampleItemListView.routeName:
+                  case WindowShorePage.routeName:
+                    return const WindowShorePage();
                   default:
                     return const SampleItemListView();
                 }

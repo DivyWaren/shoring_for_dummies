@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class WindowShorePage extends StatefulWidget {
   const WindowShorePage({super.key});
+  static const routeName = '/windowshore';
 
   @override
   State<WindowShorePage> createState() => _WindowShorePageState();
@@ -23,10 +24,18 @@ class _WindowShorePageState extends State<WindowShorePage> {
 
   void calculateMeasurements() {
     setState(() {
-      headerMeasurement = "${headerController.text} cm";
-      soleplateMeasurement = "${soleplateController.text} cm";
-      leftVerticalMeasurement = "${leftController.text} cm";
-      rightVerticalMeasurement = "${rightController.text} cm";
+      double headerValue = double.tryParse(headerController.text) ?? 0;
+      double soleplateValue = double.tryParse(soleplateController.text) ?? 0;
+      double leftValue = double.tryParse(leftController.text) ?? 0;
+      double rightValue = double.tryParse(rightController.text) ?? 0;
+      double wedgesValue = double.tryParse(wedgesController.text) ?? 0;
+      double soleplateThicknessValue = double.tryParse(soleplateThicknessController.text) ?? 0;
+      double headerHeightValue = double.tryParse(headerHeightController.text) ?? 0;
+
+      headerMeasurement = "${headerValue - wedgesValue} cm";
+      soleplateMeasurement = "${soleplateValue - wedgesValue} cm";
+      leftVerticalMeasurement = "${leftValue - wedgesValue - soleplateThicknessValue - headerHeightValue} cm";
+      rightVerticalMeasurement = "${rightValue - wedgesValue - soleplateThicknessValue - headerHeightValue} cm";
     });
   }
 
@@ -47,7 +56,7 @@ class _WindowShorePageState extends State<WindowShorePage> {
           children: [
             Center(
               child: Image.asset(
-                'assets/images/window_shore.jpg',
+                'assets/images/window.jpg',
                 height: 200,
                 width: double.infinity,
                 fit: BoxFit.cover,

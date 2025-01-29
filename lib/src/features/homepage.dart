@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../settings/settings_view.dart';
 import 'wood_cut_details_view.dart';
-
+import 'window_shore.dart';
 import '../data/data.dart';
 
 /// Displays a list of SampleItems.
@@ -106,7 +106,16 @@ class SampleItemListView extends StatelessWidget {
                   WoodCutDetailsView.routeName,
                   arguments: item, // Pass the item as an argument
                 );
-              } else {
+              } 
+              // Checks if the tapped item is Window Shore
+              else if (item['title'] == 'Window Shore') {
+                Navigator.restorablePushNamed(
+                  context,
+                  WindowShorePage.routeName,
+                  arguments: item, // Pass the item as an argument
+                );
+              }
+              else {
                 // Show a notification if tapped item is a shoring type
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
