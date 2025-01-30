@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../common/measurement_row.dart';
+import '../common/numeric_field.dart';
+
 class VerticalShorePage extends StatefulWidget {
   const VerticalShorePage({super.key});
   static const routeName = '/verticalshore';
@@ -53,10 +56,10 @@ class _VerticalShorePageState extends State<VerticalShorePage> {
             const SizedBox(height: 16),
             const Text("Enter Measurements (cm)", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
-            _buildTextField("Total Height (h)", totalHeightController),
-            _buildTextField("Header Length (hh)", headerController),
-            _buildTextField("Soleplate Length (hs)", soleplateController),
-            _buildTextField("Wedges (w)", wedgeController),
+            buildNumericField("Total Height (h)", totalHeightController),
+            buildNumericField("Header Length (hh)", headerController),
+            buildNumericField("Soleplate Length (hs)", soleplateController),
+            buildNumericField("Wedges (w)", wedgeController),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: calculateMeasurements,
@@ -64,7 +67,7 @@ class _VerticalShorePageState extends State<VerticalShorePage> {
             ),
             const SizedBox(height: 16),
             const Text("Final Measurements", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            _buildMeasurementRow("Vertical Post", verticalPostMeasurement),
+            buildMeasurementRow("Vertical Post", verticalPostMeasurement),
             const SizedBox(height: 16),
             const Text("Requirements", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const Text("(4 x 4)") ,
@@ -77,46 +80,6 @@ class _VerticalShorePageState extends State<VerticalShorePage> {
             const Text("Assembly Guide", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildTextField(String label, TextEditingController controller) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: TextField(
-        controller: controller,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMeasurementRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label, style: const TextStyle(fontSize: 16)),
-          Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAssemblyStep(String step, String imagePath) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(imagePath, height: 100, width: double.infinity, fit: BoxFit.cover),
-          Text(step, style: const TextStyle(fontSize: 14)),
-        ],
       ),
     );
   }
