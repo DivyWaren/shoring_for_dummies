@@ -4,6 +4,7 @@ import '../settings/settings_view.dart';
 import 'vertical_shore.dart';
 import 'wood_cut_details_view.dart';
 import 'window_shore.dart';
+import 'raker_shore.dart';
 import '../data/data.dart';
 
 /// Displays a list of SampleItems.
@@ -124,6 +125,15 @@ class SampleItemListView extends StatelessWidget {
                 Navigator.restorablePushNamed(
                   context,
                   VerticalShorePage.routeName,
+                  arguments: item, // Pass the item as an argument
+                );
+              }
+
+              // Checks if the tapped item is Raker Shore
+              else if (item['title'] == 'Raker Shore') {
+                Navigator.restorablePushNamed(
+                  context,
+                  RakerShorePage.routeName,
                   arguments: item, // Pass the item as an argument
                 );
               }

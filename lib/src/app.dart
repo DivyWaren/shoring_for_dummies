@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'features/vertical_shore.dart';
 import 'features/window_shore.dart';
+import 'features/raker_shore.dart';
 import 'features/wood_cut_details_view.dart';
 import 'features/homepage.dart';
 import 'settings/settings_controller.dart';
@@ -76,6 +77,8 @@ class MyApp extends StatelessWidget {
                     return const WindowShorePage();
                   case VerticalShorePage.routeName:
                     return const VerticalShorePage();
+                  case RakerShorePage.routeName:
+                    return const RakerShorePage();
                   default:
                     return const SampleItemListView();
                 }
