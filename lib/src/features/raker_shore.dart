@@ -103,8 +103,9 @@ class _RakerShorePageState extends State<RakerShorePage> {
             buildMeasurementRow("Working Point Length", workingPoint),
             const SizedBox(height: 16),
             const Text("Assembly Guide", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            buildAssemblyStep("Step 1: Set up the wall plate and soleplate.", 'assets/images/assembly_step_1.jpg'),
-            buildAssemblyStep("Step 2: Position the raker and secure using cleats.", 'assets/images/assembly_step_2.jpg'),
+            buildAssemblyStep("Step 1: Use 3 x (4\" x 4\") to erect 1 x wall plate, 1 x sole plate and 1 x raker"),
+            buildAssemblyStep("Step 2: Attach 2 x (4\" x 2\") cleats and wedge 1 x (4\" x 2\") at the sole plate"),
+            buildAssemblyStep("Step 3: Secure the shore using 4 x (12\" x 12\") gussets and 2 x (6\" x 12\") ½ gussets and 2 x (4\" x 2\") for midpoint braces")
           ],
         ),
       ),

@@ -97,8 +97,9 @@ class _WindowShorePageState extends State<WindowShorePage> {
             const Text("- Half Gusset x 1"),
             const SizedBox(height: 16),
             const Text("Assembly Guide", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            buildAssemblyStep("Step 1: Set up the base framework using the 4\" by 4\" cleats", 'assets/images/assembly_step_1.jpg'),
-            buildAssemblyStep("Step 2: Align the horizontal supports and secure with brackets.", 'assets/images/assembly_step_2.jpg'),
+            buildAssemblyStep("Step 1: Use 4 x (4\" x 4\") to erect 2 x vertical posts and 2 x horizontal beams"),
+            buildAssemblyStep("Step 2: Wedge the 3 x corners using 4 x (4\" x 2\" x 12\")"),
+            buildAssemblyStep("Step 3: Attach 4 x (4\" x 2\") cleats and nail them in place")
           ],
         ),
       ),
