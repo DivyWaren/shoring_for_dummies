@@ -10,15 +10,6 @@ const shoringTypes = [
       '''
   },
   {
-    'title': 'Double Raker Shore', 
-    'image': 'assets/images/double_raker_shore.jpg',
-    'description': 'it is a double raker shore',
-    'usage': 
-      '''Step 1: Construct 2 x raker shores 
-      \nStep 2: Secure the shores using 4 x (4" x 2") braces to enhance the length
-      '''
-  },
-  {
     'title': 'Window Shore', 
     'image': 'assets/images/window_shore.jpg',
     'description': 'it is a window shore',
